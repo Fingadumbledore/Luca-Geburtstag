@@ -2,6 +2,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import http.server
 import socketserver
 import time
+from urllib import parse
 
 PORT = 8000
 
@@ -18,6 +19,7 @@ class Serve(BaseHTTPRequestHandler):
             print(file_to_open , "not found")
         self.end_headers()
         self.wfile.write(bytes(file_to_open, 'utf-8'))
+        print(parse.urlparse(self.path[2:]))
 
     def do_POST(self):
 
