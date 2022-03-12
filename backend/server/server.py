@@ -16,9 +16,10 @@ class Serve(BaseHTTPRequestHandler):
         except:
             file_to_open = "File not found"
             self.send_response(400)
-            print(file_to_open , "not found")
+            print(file_to_open)
         self.end_headers()
         self.wfile.write(bytes(file_to_open, 'utf-8'))
+        
         parsed = parse.urlparse(self.path)
         if parsed.path == '/search':
             # convert to sql query and execute
