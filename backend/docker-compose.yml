@@ -21,10 +21,10 @@ services:
     volumes:
       - my-db:/var/lib/mysql
 
-  wserver:
-      image: /backend/server/
-      build:
-        dockerfile: ./server/Dockerfile
+  #wserver:
+      
+   # build: Dockerfile
+    #command: sh -c "python3", "backend/server/server.py" 
 # Names our volume
 volumes:
   my-db:

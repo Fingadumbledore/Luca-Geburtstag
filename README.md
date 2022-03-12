@@ -8,6 +8,14 @@ Geburtstag Karte für Luca
 
 
 
-`
- bash setup.sh
-`
+
+1. `bash setup.sh`
+2. `cd /backend`
+3. `docker-compose build`
+4. `docker-compose up` additionally `-d` can be attached so that the container runs in the background
+
+`docker-compose stop` to stop the db container
+with `docker ps` you can see the currently running containers
+
+to enter the container, just type `docker exec -it <container id> bash`
+
