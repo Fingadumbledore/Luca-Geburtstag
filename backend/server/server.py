@@ -19,8 +19,12 @@ class Serve(BaseHTTPRequestHandler):
             print(file_to_open , "not found")
         self.end_headers()
         self.wfile.write(bytes(file_to_open, 'utf-8'))
-        print(parse.urlparse(self.path[2:]))
+        parsed = parse.urlparse(self.path)
+        if parsed.path == '/search':
+            # convert to sql query and execute
+            print( "hier ist die query: " + parsed.query)
 
+""""
     def do_POST(self):
 
         try:
@@ -32,7 +36,7 @@ class Serve(BaseHTTPRequestHandler):
         except:
                 self.send_response(400)
                 print("POST error")
-
+"""
 
 httpd = HTTPServer(('0.0.0.0', PORT), Serve)
 print("server is now running on " + str(PORT))
