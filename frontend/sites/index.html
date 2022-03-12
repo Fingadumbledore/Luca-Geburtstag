@@ -9,8 +9,14 @@
 		<h1>Herzlich Willkommen</h1>
 			<!--search als endpoint muss gehandelt werden, ueber nginx/nodejs/python-server oder so einfach an search.html mit parametern weiterleiten.-->
 			<form action="search">
+				<label for="search-type">Suchen:</label>
+				<select id="Typ" name="search-type">
+					<option value="byId">Id</option>
+					<option value="byName">ItemName</option>
+					<option value="byDescription">ItemBeschreibung</option>
+				</select>
 				<input type="search" id="suche" name="query">
-				<button>Senden</button>
+				<button>Senden...</button>
 			</form>
 		</center>
 	</body>
