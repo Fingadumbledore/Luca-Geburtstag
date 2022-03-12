@@ -22,9 +22,9 @@ services:
       - my-db:/var/lib/mysql
 
   wserver:
-      image: /backend
+      image: /backend/server/
       build:
-        dockerfile: Dockerfile
+        dockerfile: ./server/Dockerfile
 # Names our volume
 volumes:
   my-db:

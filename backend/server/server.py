@@ -8,7 +8,7 @@ PORT = 8000
 class Serve(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
-            self.path = 'frontend/sites/index.html'
+            self.path = '../../frontend/sites/index.html'
         try:
                 file_to_open = open(self.path[1:]).read()
                 self.send_response(200)
@@ -32,6 +32,6 @@ class Serve(BaseHTTPRequestHandler):
                 print("POST error")
 
 
-httpd = HTTPServer(('localhost', 8000), Serve)
-print ("server is now running")
+httpd = HTTPServer(('0.0.0.0', PORT), Serve)
+print("server is now running on " + str(PORT))
 httpd.serve_forever()
