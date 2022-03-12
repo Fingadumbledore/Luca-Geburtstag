@@ -3,4 +3,6 @@ Geburtstag Karte für Luca
 
 ## Installation
 
-> bash setup.sh
+`
+ bash setup.sh
+`
