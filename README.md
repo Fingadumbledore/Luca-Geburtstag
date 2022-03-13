@@ -6,8 +6,11 @@ Geburtstag Karte für Luca
 * **You have to verify yourself with your Github login data**
 
 
-
-
+### Automatic installation 
+1. `bash setup.sh`
+2. `cd /backend`
+3. `bash db.sh`
+### Manual installation
 
 1. `bash setup.sh`
 2. `cd /backend`
