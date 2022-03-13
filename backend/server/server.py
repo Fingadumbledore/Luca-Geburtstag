@@ -2,9 +2,11 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import http.server
 import socketserver
 import time
+import logging
 from urllib import parse
 
 PORT = 8000
+#datei = open('logging.txt','r')
 
 class Serve(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -16,7 +18,10 @@ class Serve(BaseHTTPRequestHandler):
         except:
             file_to_open = "File not found"
             self.send_response(400)
-            print(file_to_open)
+
+            logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
+            logging.error(file_to_open)
+           # datei.write("\n\n" + format=='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S' + file_to_open  )
         self.end_headers()
         self.wfile.write(bytes(file_to_open, 'utf-8'))
         
@@ -24,6 +29,7 @@ class Serve(BaseHTTPRequestHandler):
         if parsed.path == '/search':
             # convert to sql query and execute
             print( "hier ist die query: " + parsed.query)
+            logging.error(parsed.query)
 
 """"
     def do_POST(self):
