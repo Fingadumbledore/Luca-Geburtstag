@@ -3,7 +3,7 @@ CREATE DATABASE main;
 CREATE TABLE main.Items (
     Id int not null auto_increment,
     ItemName text not null,
-    ItemDescription text
+    ItemBeschreibung text
 );
 
 CREATE TABLE main.Users ( 
