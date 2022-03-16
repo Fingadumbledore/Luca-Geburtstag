@@ -3,7 +3,7 @@
 echo ------------------------[Leere log Datei]------------------------------
 echo "" > backend/server/logging.txt 
 echo ------------------------[Baue Server]----------------------------------
-docker build -t luca -f Dockerfile .                  # baut docker container mit namen luca
+docker build -t luca -f Dockerfile .         # baut docker container mit namen luca
 echo ------------------------[Starte Server]--------------------------------
 docker run --rm -it -p 8000:8000 luca        # startet docker container
-
+echo ------------------------[Initiiere Datenbank]---------------------------

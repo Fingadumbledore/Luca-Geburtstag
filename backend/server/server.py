@@ -31,7 +31,6 @@ class Serve(BaseHTTPRequestHandler):
             print( "hier ist die query: " + parsed.query)
             logging.error(parsed.query)
 
-""""
     def do_POST(self):
 
         try:
@@ -43,7 +42,6 @@ class Serve(BaseHTTPRequestHandler):
         except:
                 self.send_response(400)
                 print("POST error")
-"""
 
 httpd = HTTPServer(('0.0.0.0', PORT), Serve)
 print("server is now running on " + str(PORT))

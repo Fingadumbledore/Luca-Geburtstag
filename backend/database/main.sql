@@ -17,4 +17,4 @@ CREATE TABLE main.Users (
 -- mysql -u root -h localhost -P 3306 --password=password < main.sql 
 
 -- oder beim starten:
--- docker exec mysql 'mysql -u root -h localhost -P 3306 --password=password < main.sql'
+-- docker exec mysql 'mysql -u root -h localhost -P 3306 --password=password < main.sql'y
