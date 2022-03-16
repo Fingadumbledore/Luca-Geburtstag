@@ -1,8 +1,6 @@
-FROM alpine:latest
+FROM python:latest
 
 COPY . .
-
-RUN apk add python3
 
 ADD frontend/sites/ /sites
 EXPOSE 8000
