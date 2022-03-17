@@ -1,6 +1,13 @@
-CREATE TABLE IF NOT EXISTS users (
-	id INT NOT NULL AUTO_INCREMENT,
-    username varchar(20) NOT NULL,
-    userpassword varchar(32) NOT NULL,
-    PRIMARY KEY (id)
+CREATE DATABASE main;
+
+CREATE TABLE main.Items (
+    Id int not null,
+    ItemName text not null,
+    ItemBeschreibung text
+);
+
+CREATE TABLE main.Users ( 
+    Id int not null, 
+    UserName text not null, 
+    Password text not null 
 );
