@@ -5,13 +5,13 @@ services:
     restart: always
     command: --init-file /db/main.sql
     environment:
-      MYSQL_DATABASE: 'db'
+      MYSQL_ROOT_USER: root
       # So you don't have to use root, but you can if you like
-      MYSQL_USER: 'user'
+      MYSQL_USER: user
       # You can use whatever password you like
-      MYSQL_PASSWORD: 'd0ntD07415'
+      MYSQL_PASSWORD: password
       # Password for root access
-      MYSQL_ROOT_PASSWORD: '__d0ntD07415'
+      MYSQL_ROOT_PASSWORD: password
     ports:
       # <Port exposed> : < MySQL Port running inside container>
       - '3306:3306'
