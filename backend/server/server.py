@@ -29,7 +29,7 @@ class Serve(BaseHTTPRequestHandler):
             file_to_open = "File not found"
             self.send_response(400)
         finally:
-            log = date + file_to_open
+            log = date + " " +file_to_open
             self.log_server(log)
             #datei.write('\n' + " " + log)
             #logging.basicConfig(format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S')
