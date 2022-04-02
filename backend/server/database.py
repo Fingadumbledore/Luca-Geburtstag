@@ -1,12 +1,11 @@
 from mysql.connector import connect, Error
-from getpass import getpass
 
-try:
-    with connect(
-        host="localhost",
-        user=input("Username> "),
-        password=getpass("Password>"),
-    ) as connection:
-        print(connection)
-except Error as e:
-    print(e)
+mydb = connect(
+    host="localhost", user="root",password="password"
+)
+
+cursor = mydb.cursor()
+cursor.execute("SHOW DATABASES")
+
+for database in cursor:
+    print(database)
