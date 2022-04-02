@@ -1,5 +1,6 @@
 #!/bin/bash
 #sudo apt install docker-compose python3 python3-pip && pip install mysql-connector-python  # installiert docker-compose und python3, um sicher zu gehen
+bash clean.sh
 echo ------------------------[Überprüfung der Berechtigung]-----------------
 if [ `/usr/bin/id -u` != "0" ]; then
       echo  fail "Du brauchst Rechte für dieses Skript\n"
