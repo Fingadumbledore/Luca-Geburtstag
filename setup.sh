@@ -32,17 +32,8 @@ echo ------------------------[Installiere zusätzliche Packete]--------------
 sudo apt install docker-compose python3 python3-pip && pip install mysql-connector-python
 
 echo ------------------------[Erstelle Service]-----------------------------
-sudo touch /etc/systemd/system/wserver.service
+sudo cp wserver.service /etc/systemd/sytem/wserver.service
 
-echo  "Description = Web server" >> /etc/systemd/system/wserver.service
-echo " After network.target = auditd.service"   >> /etc/systemd/system/wserver.service
-echo " " >> /etc/systemd/system/wserver.service
-echo " [Service] "  >> /etc/systemd/system/wserver.service
-echo " Type = forking " >> /etc/systemd/system/wserver.service
-echo " ExecStart = /home/$USER/Luca-Geburtstag/backend/run.sh " >> /etc/systemd/system/wserver.service
-echo " " >> /etc/systemd/system/wserver.service
-echo " [Install]"  >> /etc/systemd/system/wserver.service
-echo " WantedBy = multi-user.target" >> /etc/systemd/system/wserver.service
 echo ------------------------[Service wurde erstellt]-----------------------
 
 echo ------------------------[Leere log Datei]------------------------------
