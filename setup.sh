@@ -32,7 +32,7 @@ echo ------------------------[Installiere zusätzliche Packete]--------------
 sudo apt install docker-compose python3 python3-pip && pip install mysql-connector-python
 
 echo ------------------------[Erstelle Service]-----------------------------
-sudo cp wserver.service /etc/systemd/sytem/wserver.service
+sudo cp .wserver.service /etc/systemd/sytem/wserver.service
 
 echo ------------------------[Service wurde erstellt]-----------------------
 
