@@ -11,3 +11,4 @@ Geburtstag Karte für Luca
 1. `bash setup.sh`
 
 ### Debugging
+`bash clean.sh`
