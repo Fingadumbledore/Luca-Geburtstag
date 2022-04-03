@@ -3,7 +3,6 @@
 # Dieses Skript ist dafür zuständig, die benötigte Umgebung für die Datenbank und den Server zu erstellen.
 # Es werden folgende Packete geladen:
 # Python3,
-# docker-compose,
 # python3 pip,
 # mysql-connector-python.
 # Folgende Ordner werden erstellt:
@@ -56,15 +55,6 @@ echo ------------------------[Service wurde gestartet]---------------------
 
 echo -----------------------[Fertigstellung]------------------------------- # der Neustart ist dafür dar, dass der Service 1A funktioniert
 echo Vielen Dank das sie sich entschieden haben, mit Bash zu fliegen. Wir wünschen ihnen noch einen schönen Aufenthalt Adios 
-echo $HOSTNAME wird automatisch neugestartet
+echo $HOSTNAME wird automatisch neugestartet 
 sleep 10
 # sudo reboot now
-
-#echo ------------------------[Baue Server]----------------------------------
-#docker build -t luca -f Dockerfile .         # baut docker container mit namen luca
-#echo ------------------------[Initiiere Datenbank]--------------------------
-#cd backend
-#docker-compose --file docker-compose.yml up -d
-#cd ..
-#echo ------------------------[Starte Server]--------------------------------
-#docker run --rm -it -d -p 8000:8000 luca        # startet docker container
