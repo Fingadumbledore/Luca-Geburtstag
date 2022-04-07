@@ -29,7 +29,7 @@ echo ------------------------[Prüfe ob System aktuell ist]------------------
 sudo apt update && sudo apt upgrade && sudo apt full-upgrade
 
 echo ------------------------[Installiere zusätzliche Packete]--------------
-sudo apt install docker-compose python3 python3-pip && pip install mysql-connector-python
+sudo apt install docker-compose python3 python3-pip && sudo apt install sqlite3
 
 echo ------------------------[Erstelle Service]-----------------------------
 sudo cp .wserver.service /etc/systemd/sytem/wserver.service

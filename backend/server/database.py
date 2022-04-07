@@ -1,11 +1,35 @@
-from mysql.connector import connect, Error
+import os, sys, sqlite3
 
-mydb = connect(
-    host="localhost", user="root",password="password"
-)
+# Existenz feststellen
+if os.path.exists("login.db"):
+    print("Datei bereits vorhanden")
+    sys.exit(0)
 
-cursor = mydb.cursor()
-cursor.execute("SHOW DATABASES")
+# Verbindung zur Datenbank erzeugen
+connection = sqlite3.connect("login.db")
 
-for database in cursor:
-    print(database)
+# Datensatz-Cursor erzeugen
+cursor = connection.cursor()
+
+# Datenbanktabelle erzeugen
+sql = "CREATE TABLE user(" \
+      "username TEXT, " \
+      "password TEXT, " \
+      "info TEXT)"
+cursor.execute(sql)
+
+# Datensatz erzeugen
+sql = "INSERT INTO user VALUES('Horst', " \
+      "'#ananas.geschnetzeltes3', 'Standard Nutzer')"
+cursor.execute(sql)
+connection.commit()
+
+# Datensatz erzeugen
+sql = "INSERT INTO user VALUES('admin', " \
+      "'admin', 'Admin')"
+cursor.execute(sql)
+connection.commit()
+
+
+# Verbindung beenden
+connection.close()
