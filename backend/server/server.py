@@ -3,13 +3,19 @@ import http.server
 import socketserver
 import time
 import logging
+import sqlite3
 from urllib import parse
 
 PORT = 8000
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
+ 
 
 class Serve(BaseHTTPRequestHandler):
+
+      
+
+
 
     def log_server(self, log):
         datei = open('server.log','a')
@@ -46,6 +52,12 @@ class Serve(BaseHTTPRequestHandler):
 
             # convert to sql query and execute
             print( "hier ist die query: " + parsed.query)
+            verbindung = sqlite3.connect("login.db")
+            zeiger = verbindung.cursor()
+            zeiger.execute(parsed.query)
+            inhalt = zeiger.fetchall()
+            print(inhalt)
+            verbindung.close()
 
     def do_POST(self):
 
