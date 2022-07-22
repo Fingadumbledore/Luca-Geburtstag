@@ -30,6 +30,8 @@ class Serve(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/':
             self.path = '../../../frontend/sites/index.html'
+        if self.path == '/matrix':
+            self.path  = '../../../frontend/sites/matrix.html'
 
         try:
             file_to_open = open(self.path[1:]).read()
