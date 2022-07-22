@@ -10,6 +10,10 @@ PORT = 8000
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
  
+connection = sqlite3.connect("login.db")
+
+# Datensatz-Cursor erzeugen
+cursor = connection.cursor()
 
 class Serve(BaseHTTPRequestHandler):
 
@@ -58,6 +62,8 @@ class Serve(BaseHTTPRequestHandler):
             inhalt = zeiger.fetchall()
             print(inhalt)
             verbindung.close()
+            
+            
 
     def do_POST(self):
 
@@ -72,8 +78,8 @@ class Serve(BaseHTTPRequestHandler):
                 #print("POST error")
 
 httpd = HTTPServer(('0.0.0.0', PORT), Serve)
-log = log + "server is now running on" + str(PORT)
+log = log + "server is now running on 127.0.0.1:" + str(PORT)
 #log_server(log)
-print("server is now running on " + str(PORT))
+print("server is now running on http://127.0.0.1:" + str(PORT))
 
 httpd.serve_forever()

@@ -32,7 +32,10 @@ echo ------------------------[Installiere zusätzliche Packete]--------------
 sudo apt install docker-compose python3 python3-pip && sudo apt install sqlite3
 
 echo ------------------------[Erstelle Service]-----------------------------
-sudo cp .wserver.service /etc/systemd/sytem/wserver.service
+cd /etc/systemd/system
+touch wserver.service
+sudo mv wserver.service /etc/systemd/system
+
 
 echo ------------------------[Service wurde erstellt]-----------------------
 
@@ -40,7 +43,9 @@ echo ------------------------[Leere log Datei]------------------------------
 echo "" > backend/server/server.log
 
 cd /etc/systemd/system
-systemctl enable wserver.service
+
+#systemctl start wserver.service
+sudo systemctl enable wserver.service
 
 echo ------------------------[Service wurde gestartet]---------------------
 
