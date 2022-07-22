@@ -1,9 +1,0 @@
-Description = Web server
-After network.target = auditd.service
-
-[Service]
-Type = forking
-ExecStart = /home/$USER/Luca-Geburtstag/backend/run.sh
-
-[Install]
-WantedBy = multi-user.target
