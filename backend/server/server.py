@@ -76,10 +76,17 @@ class Serve(BaseHTTPRequestHandler):
         except:
                 self.send_response(400)
                 #print("POST error")
+try:
+    httpd = HTTPServer(('0.0.0.0', PORT), Serve)
+    log = log + "server is now running on 127.0.0.1:" + str(PORT)
+    #log_server(log)
+    print("server is now running on http://127.0.0.1:" + str(PORT))
 
-httpd = HTTPServer(('0.0.0.0', PORT), Serve)
-log = log + "server is now running on 127.0.0.1:" + str(PORT)
-#log_server(log)
-print("server is now running on http://127.0.0.1:" + str(PORT))
-
-httpd.serve_forever()
+    httpd.serve_forever()
+except KeyboardInterrupt:
+        pass
+    #Server beenden, und Datein speichern/in Sammlung schieben
+        httpd.server_close()
+        print("\nServer stopped.")
+        print("saving files")
+        
