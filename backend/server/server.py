@@ -17,6 +17,7 @@ cursor = connection.cursor()
 
 class Serve(BaseHTTPRequestHandler):
 
+    parsed = parse.urlparse(self.path)
       
 
 
@@ -32,6 +33,16 @@ class Serve(BaseHTTPRequestHandler):
             self.path = '../../../frontend/sites/index.html'
         if self.path == '/matrix':
             self.path  = '../../../frontend/sites/matrix.html'
+        if parsed.path == '/search':
+
+            # convert to sql query and execute
+            print( "hier ist die query: " + parsed.query)
+            verbindung = sqlite3.connect("login.db")
+            zeiger = verbindung.cursor()
+            zeiger.execute(parsed.query)
+            inhalt = zeiger.fetchall()
+            print(inhalt)
+            verbindung.close()
 
         try:
             file_to_open = open(self.path[1:]).read()
@@ -51,33 +62,7 @@ class Serve(BaseHTTPRequestHandler):
 
         self.end_headers()
         self.wfile.write(bytes(file_to_open, 'utf-8'))
-
-        parsed = parse.urlparse(self.path)
-
-        if parsed.path == '/search':
-
-            # convert to sql query and execute
-            print( "hier ist die query: " + parsed.query)
-            verbindung = sqlite3.connect("login.db")
-            zeiger = verbindung.cursor()
-            zeiger.execute(parsed.query)
-            inhalt = zeiger.fetchall()
-            print(inhalt)
-            verbindung.close()
-            
-            
-
-    def do_POST(self):
-
-        try:
-            self.send_responses(200)
-            self.send_header("Content-type", "application/json")
-            self.end_headers()
-
-            self.wfile(bytes('{"time": "' + date + '"}',"utf-8"))
-        except:
-                self.send_response(400)
-                #print("POST error")
+      
 try:
     httpd = HTTPServer(('0.0.0.0', PORT), Serve)
     log = log + "server is now running on 127.0.0.1:" + str(PORT)
