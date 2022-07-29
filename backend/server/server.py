@@ -16,12 +16,6 @@ connection = sqlite3.connect("login.db")
 cursor = connection.cursor()
 
 class Serve(BaseHTTPRequestHandler):
-
-    
-      
-
-
-
     def log_server(self, log):
         datei = open('server.log','a')
         datei.write('\n' + " " + log )
@@ -35,17 +29,10 @@ class Serve(BaseHTTPRequestHandler):
         if self.path == '/matrix':
             self.path  = '../../../frontend/sites/matrix.html'
         if parsed.path == '/search':
-
-            # convert to sql query and execute
-            print( "hier ist die query: " + parsed.query)
-            verbindung = sqlite3.connect("login.db")
-            zeiger = verbindung.cursor()
-            zeiger.execute(parsed.query)
-            inhalt = zeiger.fetchall()
-            print(inhalt)
-            verbindung.close()
+            search(parsed.query)
 
         try:
+
             file_to_open = open(self.path[1:]).read()
             self.send_response(200)
             log = date + " 200"
@@ -64,6 +51,18 @@ class Serve(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes(file_to_open, 'utf-8'))
       
+    def search(self, q):
+        # convert to sql query and execute
+        print( "hier ist die query: " + q)
+        # connect to db
+        verbindung = sqlite3.connect("login.db")
+        zeiger = verbindung.cursor()
+        query = f"select * from {}"
+        zeiger.execute(query)
+        inhalt = zeiger.fetchall()
+        print(inhalt)
+        verbindung.close()
+
 try:
     httpd = HTTPServer(('0.0.0.0', PORT), Serve)
     log = log + "server is now running on 127.0.0.1:" + str(PORT)
@@ -77,4 +76,3 @@ except KeyboardInterrupt:
         httpd.server_close()
         print("\nServer stopped.")
         print("saving files")
-        
