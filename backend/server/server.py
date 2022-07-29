@@ -23,14 +23,16 @@ class Serve(BaseHTTPRequestHandler):
         datei.close()
 
     def do_GET(self):
+        self.sites = '../../../frotendend/sites'
         parsed = parse.urlparse(self.path)
         match self.path: 
             case '/': 
-                self.path = '../../../frontend/sites/index.html'
+                self.path = f'{self.sites}/index.html'
             case '/matrix':
                 self.path  = '../../../frontend/sites/matrix.html'
             case '/search':
                 self.search(parsed.query)
+                self.path = '../../.../frontend/'
 
         try:
 
