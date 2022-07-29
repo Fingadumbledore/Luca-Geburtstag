@@ -16,7 +16,6 @@ echo "" > backend/server/server.log
 
 echo -----------------------[Fertigstellung]------------------------------- 
 echo Vielen Dank das sie sich entschieden haben, mit Bash zu fliegen. Wir wünschen ihnen noch einen schönen Aufenthalt Adios 
-sleep 5
 echo -----------------------[Starte Server]---------------------------------
 cd backend/server
 python3 database.py

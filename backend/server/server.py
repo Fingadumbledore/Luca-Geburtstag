@@ -1,7 +1,8 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import time
 import sqlite3
-from urllib import parse
+import urllib
+import urllib.parse
 import json
 
 PORT = 8000
@@ -22,19 +23,24 @@ class Serve(BaseHTTPRequestHandler):
         datei.close()
 
     def do_GET(self):
-        parsed = parse.urlparse(self.path)
-        print(self.path)
+        parsed = urllib.parse.urlparse(self.path)
+        print(parsed)
+        print(parsed.path)
         if self.path == '/':
             self.path = '../../../frontend/sites/index.html'
-        if self.path == '/matrix':
+        elif self.path == '/matrix':
             self.path = '../../../frontend/sites/matrix.html'
-        if self.path == '/search':
+        elif parsed.path == '/search':
             print('asdf')
             print(parsed.query)
             self.search(parsed.query)
             self.path = '../../.../frontend/results.html'
-        if self.path == '/login':
+        elif self.path == '/login':
             self.login()
+        else:
+            print("not found")
+            self.send_response(404)
+            return
 
         try:
             file_to_open = open(self.path[1:]).read()
@@ -53,25 +59,13 @@ class Serve(BaseHTTPRequestHandler):
 
     def search(self, q):
         # convert to sql query and execute
-        print("hier ist die query: " + q)
         # connect to db
         verbindung = sqlite3.connect("login.db")
-        print("cursort")
         zeiger = verbindung.cursor()
-        qjs = json.dumps(parse.urlparse.parse_qs(q))
-        print(qjs)
+        test = urllib.parse.parse_qs(q)
+        print(test)
 
-#        by_what = match qjs["search-type"]:
-#           case "byId": "ItemId"
-#              break
-#         case "byName": "ItemName"
-#            break
-#       case "byDescription": "ItemBeschreibung"
-#          break
-
-        # match qjs["search-type"]
-
-        query = f"select * from user where !!!' is {qjs['query']}"
+        query = f"select * from user where !!!' is {test['query']}"
         zeiger.execute(query)
         inhalt = zeiger.fetchall()
         print(inhalt)
