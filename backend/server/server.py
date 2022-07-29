@@ -62,10 +62,10 @@ class Serve(BaseHTTPRequestHandler):
         # connect to db
         verbindung = sqlite3.connect("login.db")
         zeiger = verbindung.cursor()
-        test = urllib.parse.parse_qs(q)
-        print(test)
+        obj = urllib.parse.parse_qs(q)
+        print(obj['search-type'], "  ", obj['query'])
 
-        query = f"select * from user where !!!' is {test['query']}"
+        query = f"select * from user where {obj['search-type']} is '{obj['query'][0]}'"
         zeiger.execute(query)
         inhalt = zeiger.fetchall()
         print(inhalt)
