@@ -24,12 +24,13 @@ class Serve(BaseHTTPRequestHandler):
 
     def do_GET(self):
         parsed = parse.urlparse(self.path)
-        if self.path == '/':
-            self.path = '../../../frontend/sites/index.html'
-        if self.path == '/matrix':
-            self.path  = '../../../frontend/sites/matrix.html'
-        if parsed.path == '/search':
-            search(parsed.query)
+        match self.path: 
+            case '/': 
+                self.path = '../../../frontend/sites/index.html'
+            case '/matrix':
+                self.path  = '../../../frontend/sites/matrix.html'
+            case '/search':
+                self.search(parsed.query)
 
         try:
 
@@ -57,7 +58,7 @@ class Serve(BaseHTTPRequestHandler):
         # connect to db
         verbindung = sqlite3.connect("login.db")
         zeiger = verbindung.cursor()
-        query = f"select * from user where "
+        query = f"select * from user where search-type is  "
         zeiger.execute(query)
         inhalt = zeiger.fetchall()
         print(inhalt)
