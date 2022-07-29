@@ -57,7 +57,8 @@ class Serve(BaseHTTPRequestHandler):
         zeiger = verbindung.cursor()
         obj = urllib.parse.parse_qs(q)
 
-        query = f"select * from Item where {obj['search-type'][0]} is '{obj['query'][0]}'"
+        query = f"select * from Item\
+                  where {obj['search-type'][0]} is '{obj['query'][0]}'"
         zeiger.execute(query)
         inhalt = zeiger.fetchall()
         print(inhalt)
