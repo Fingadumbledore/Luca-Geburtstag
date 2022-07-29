@@ -24,21 +24,16 @@ class Serve(BaseHTTPRequestHandler):
 
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
-        print(parsed)
-        print(parsed.path)
         if self.path == '/':
             self.path = '../../../frontend/sites/index.html'
         elif self.path == '/matrix':
             self.path = '../../../frontend/sites/matrix.html'
         elif parsed.path == '/search':
-            print('asdf')
-            print(parsed.query)
             self.search(parsed.query)
-            self.path = '../../.../frontend/results.html'
+            self.path = '../../../frontend/results.html'
         elif self.path == '/login':
             self.login()
         else:
-            print("not found")
             self.send_response(404)
             return
 
@@ -58,14 +53,11 @@ class Serve(BaseHTTPRequestHandler):
         self.wfile.write(bytes(file_to_open, 'utf-8'))
 
     def search(self, q):
-        # convert to sql query and execute
-        # connect to db
         verbindung = sqlite3.connect("login.db")
         zeiger = verbindung.cursor()
         obj = urllib.parse.parse_qs(q)
-        print(obj['search-type'], "  ", obj['query'])
 
-        query = f"select * from Item where {obj['search-type']} is '{obj['query'][0]}'"
+        query = f"select * from Item where {obj['search-type'][0]} is '{obj['query'][0]}'"
         zeiger.execute(query)
         inhalt = zeiger.fetchall()
         print(inhalt)
