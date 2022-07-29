@@ -15,7 +15,13 @@ cursor = connection.cursor()
 sql = "CREATE TABLE user(" \
       "username TEXT, " \
       "password TEXT, " \
-      "info TEXT)"
+      "info TEXT);"
+cursor.execute(sql)
+
+sql = "create table Item(\
+       ItemId int not null,\
+       ItemName text not null,\
+       ItemBeschreibung text not null);"
 cursor.execute(sql)
 
 # Datensatz erzeugen
