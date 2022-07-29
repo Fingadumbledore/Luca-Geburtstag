@@ -5,6 +5,7 @@ import time
 import logging
 import sqlite3
 from urllib import parse
+import json
 
 PORT = 8000
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
@@ -33,8 +34,8 @@ class Serve(BaseHTTPRequestHandler):
             case '/search':
                 self.search(parsed.query)
                 self.path = '../../.../frontend/'
-           case '/login':
-           	self.login()
+            case '/login':
+               	self.login()
 
         try:
 
@@ -62,7 +63,21 @@ class Serve(BaseHTTPRequestHandler):
         # connect to db
         verbindung = sqlite3.connect("login.db")
         zeiger = verbindung.cursor()
-        query = f"select * from user where search-type is  "
+        print(json.dumps(urlparse.parse_qs(q)))
+        qjs = json.dumps(urlparse.parse_qs(q))
+        print(qjs)
+
+#        by_what = match qjs["search-type"]:
+#           case "byId": "ItemId"
+#              break
+#         case "byName": "ItemName"
+#            break
+#       case "byDescription": "ItemBeschreibung"
+#          break
+        
+        #match qjs["search-type"]
+        
+        query = f"select * from user where {by_what} is {qjs['query']}"
         zeiger.execute(query)
         inhalt = zeiger.fetchall()
         print(inhalt)
