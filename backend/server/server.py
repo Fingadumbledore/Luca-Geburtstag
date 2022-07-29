@@ -33,6 +33,8 @@ class Serve(BaseHTTPRequestHandler):
             case '/search':
                 self.search(parsed.query)
                 self.path = '../../.../frontend/'
+           case '/login':
+           	self.login()
 
         try:
 
@@ -65,6 +67,9 @@ class Serve(BaseHTTPRequestHandler):
         inhalt = zeiger.fetchall()
         print(inhalt)
         verbindung.close()
+
+    def login():
+        print("moin")
 
 try:
     httpd = HTTPServer(('0.0.0.0', PORT), Serve)
