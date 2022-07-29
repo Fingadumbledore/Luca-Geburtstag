@@ -17,7 +17,7 @@ cursor = connection.cursor()
 
 class Serve(BaseHTTPRequestHandler):
 
-    parsed = parse.urlparse(self.path)
+    
       
 
 
@@ -29,6 +29,7 @@ class Serve(BaseHTTPRequestHandler):
         datei.close()
 
     def do_GET(self):
+        parsed = parse.urlparse(self.path)
         if self.path == '/':
             self.path = '../../../frontend/sites/index.html'
         if self.path == '/matrix':
