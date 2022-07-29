@@ -24,7 +24,7 @@ class Serve(BaseHTTPRequestHandler):
         datei.close()
 
     def do_GET(self):
-        self.sites = '../../../frotendend/sites'
+        self.sites = '../../../frotend/sites'
         parsed = parse.urlparse(self.path)
         match self.path: 
             case '/': 
