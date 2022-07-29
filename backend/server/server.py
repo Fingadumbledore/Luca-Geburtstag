@@ -65,7 +65,7 @@ class Serve(BaseHTTPRequestHandler):
         obj = urllib.parse.parse_qs(q)
         print(obj['search-type'], "  ", obj['query'])
 
-        query = f"select * from user where {obj['search-type']} is '{obj['query'][0]}'"
+        query = f"select * from Item where {obj['search-type']} is '{obj['query'][0]}'"
         zeiger.execute(query)
         inhalt = zeiger.fetchall()
         print(inhalt)
