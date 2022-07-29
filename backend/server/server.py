@@ -57,7 +57,7 @@ class Serve(BaseHTTPRequestHandler):
         # connect to db
         verbindung = sqlite3.connect("login.db")
         zeiger = verbindung.cursor()
-        query = f"select * from {}"
+        query = f"select * from user where "
         zeiger.execute(query)
         inhalt = zeiger.fetchall()
         print(inhalt)
