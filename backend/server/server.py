@@ -16,6 +16,10 @@ cursor = connection.cursor()
 
 
 class Serve(BaseHTTPRequestHandler):
+
+   
+        
+
     def log_server(self, log):
         datei = open('server.log', 'a')
         datei.write('\n' + " " + log)
@@ -34,6 +38,7 @@ class Serve(BaseHTTPRequestHandler):
         elif self.path == '/login':
             self.login()
         else:
+            self.path = '../../../frontend/troll.html'
             self.send_response(404)
             return
 
