@@ -2,10 +2,10 @@
 
 echo ------------------------[Überprüfung der Berechtigung]-----------------
 if [ `/usr/bin/id -u` != "0" ]; then
-      echo  fail "Du brauchst Rechte für dieses Skript\n"
+      echo  fail "Digga wallah du brauchst Rechte für dieses Skript\n"
       exit 0
 else 
-    echo Deine Rechte passen
+    echo Digga  deine Rechte passen
 fi
 
 echo ------------------------[Prüfe ob System aktuell ist]------------------
