@@ -1,5 +1,6 @@
 # Luca-Geburtstag
 Geburtstag Karte für Luca
+[![Docker Image CI](https://github.com/Fingadumbledore/Luca-Geburtstag/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Fingadumbledore/Luca-Geburtstag/actions/workflows/docker-image.yml)
 
 ![Screenshot.](IMG_0004.jpg)
 ## Installation
