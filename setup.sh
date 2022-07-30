@@ -5,7 +5,7 @@ if [ `/usr/bin/id -u` != "0" ]; then
       echo  fail "Digga wallah du brauchst Rechte für dieses Skript\n"
       exit 0
 else 
-    echo Digga  deine Rechte passen
+    echo Digga tschüsch deine Rechte passen
 fi
 
 echo ------------------------[Prüfe ob System aktuell ist]------------------
