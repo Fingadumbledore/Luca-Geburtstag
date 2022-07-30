@@ -8,7 +8,10 @@ Geburtstag Karte für Luca
 
 
 ### Automatic installation 
-1. `bash setup.sh`
+(Debian & Ubuntu)
+1. `bash ./setup.sh`
+(Arch)
+1. `bash ./setup-arch.sh`
 
 ### Debugging
 `bash clean.sh`
