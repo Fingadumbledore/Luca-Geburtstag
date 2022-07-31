@@ -19,3 +19,9 @@ Geburtstag Karte für Luca
 ### Debugging
 
 `bash clean.sh`
+
+## TODO
+
+### SQL injection
+
+Endpoint muss werte geben
