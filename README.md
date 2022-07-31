@@ -9,9 +9,9 @@ Geburtstag Karte für Luca
 
 ### Automatic installation 
 #### (Debian & Ubuntu)
-1. `bash ./setup.sh`
+1. `sudo bash ./setup.sh`
 #### (Arch)
-1. `bash ./setup-arch.sh`
+1. `sudo bash ./setup-arch.sh`
 
 ### Development
 * clone repo `git clone https://github.com/Fingadumbledore/Luca-Geburtstag.git`
