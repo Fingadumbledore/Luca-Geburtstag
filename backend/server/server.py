@@ -37,10 +37,8 @@ class Serve(BaseHTTPRequestHandler):
             self.path = '../../../frontend/results.html'
         elif self.path == '/login':
             self.login()
-        elif not self.path == '/login' or self.path == '/' or self.path == '/matrix' or self.path == '/search':
-            self.path = '../../../frontend/troll.html'
         else:
-            self.send_response(404)
+            self.path = '../../../frontend/troll.html'
             return
 
         try:
@@ -71,6 +69,8 @@ class Serve(BaseHTTPRequestHandler):
             inhalt = zeiger.fetchall()
             print(inhalt)
             verbindung.close()
+            self.wfile.write(json.dumps({'hello': 'world', 'received': 'ok'}))
+
         except KeyError as e:
             print("error: " + str(type(e)))
 
