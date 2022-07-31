@@ -37,8 +37,10 @@ class Serve(BaseHTTPRequestHandler):
             self.path = '../../../frontend/results.html'
         elif self.path == '/login':
             self.login()
-        else:
+        elif not self.path == '/login' or self.path == '/' or self.path == '/matrix' or self.path == '/search':
+            print("HUHU")
             self.path = '../../../frontend/troll.html'
+        else:
             self.send_response(404)
             return
 
