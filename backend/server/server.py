@@ -38,7 +38,6 @@ class Serve(BaseHTTPRequestHandler):
         elif self.path == '/login':
             self.login()
         elif not self.path == '/login' or self.path == '/' or self.path == '/matrix' or self.path == '/search':
-            print("HUHU")
             self.path = '../../../frontend/troll.html'
         else:
             self.send_response(404)
@@ -64,12 +63,16 @@ class Serve(BaseHTTPRequestHandler):
         zeiger = verbindung.cursor()
         obj = urllib.parse.parse_qs(q)
 
-        query = f"select * from Item\
-                  where {obj['search-type'][0]} is '{obj['query'][0]}'"
-        zeiger.execute(query)
-        inhalt = zeiger.fetchall()
-        print(inhalt)
-        verbindung.close()
+        try:
+            print(obj['search-type'], " ", obj['query'])
+            query = f"select * from Item where {obj['search-type'][0]} is '{obj['query'][0]}';"
+            print(query)
+            zeiger.execute(query)
+            inhalt = zeiger.fetchall()
+            print(inhalt)
+            verbindung.close()
+        except KeyError as e:
+            print("error: " + str(type(e)))
 
     def login():
         print("moin")
