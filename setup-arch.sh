@@ -9,7 +9,7 @@ else
 fi
 
 echo ------------------------[Prüfe ob System aktuell ist]------------------
-sudo pacman -Syu python python3-pip sqlite3 docker docker-compose
+sudo pacman -Syu python python-pip sqlite3 docker docker-compose python-flask
 
 echo ------------------------[Leere log Datei]------------------------------
 echo "" > backend/server/server.log

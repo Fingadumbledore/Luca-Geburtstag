@@ -3,7 +3,6 @@ import time
 import sqlite3
 import urllib
 import urllib.parse
-import json
 
 PORT = 8000
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
@@ -16,10 +15,6 @@ cursor = connection.cursor()
 
 
 class Serve(BaseHTTPRequestHandler):
-
-   
-        
-
     def log_server(self, log):
         datei = open('server.log', 'a')
         datei.write('\n' + " " + log)
@@ -33,8 +28,11 @@ class Serve(BaseHTTPRequestHandler):
         elif self.path == '/matrix':
             self.path = '../../../frontend/sites/matrix.html'
         elif parsed.path == '/search':
-            self.search(parsed.query)
             self.path = '../../../frontend/results.html'
+            .send_reponse(200)
+            self.send_header('Content-Type: application/json')
+            self.end_headers()
+            self.wfile.write(self.search(parsed.query))
         elif self.path == '/login':
             self.login()
         else:
@@ -56,20 +54,35 @@ class Serve(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(bytes(file_to_open, 'utf-8'))
 
+    def json_from(self, ls: list):
+        json = "["
+        for item in ls:
+            json += "\n\t{"
+            json += "\n\t\tItemId: "
+            json += str(item[0])
+
+            json += ",\n\t\tItemName: "
+            json += str(item[1])
+            json += ",\n\t\tItemBeschreibung: "
+            json += str(item[2]) + "\n\t"
+            json += "},\n"
+        json += "]"
+        print(json)
+        return json
+
     def search(self, q):
         verbindung = sqlite3.connect("login.db")
         zeiger = verbindung.cursor()
         obj = urllib.parse.parse_qs(q)
 
         try:
-            print(obj['search-type'], " ", obj['query'])
             query = f"select * from Item where {obj['search-type'][0]} is '{obj['query'][0]}';"
             print(query)
             zeiger.execute(query)
             inhalt = zeiger.fetchall()
             print(inhalt)
             verbindung.close()
-            self.wfile.write(json.dumps({'hello': 'world', 'received': 'ok'}))
+            return self.json_from(inhalt)
 
         except KeyError as e:
             print("error: " + str(type(e)))
