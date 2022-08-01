@@ -17,5 +17,5 @@ echo "" > backend/server/server.log
 echo -----------------------[Fertigstellung]------------------------------- 
 echo Vielen Dank das sie sich entschieden haben, mit Bash zu fliegen. Wir wünschen ihnen noch einen schönen Aufenthalt Adios 
 echo -----------------------[Starte Server]---------------------------------
-FLASK_APP=backend/server/new.py
+export FLASK_APP=backend/server/new
 flask run
