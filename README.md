@@ -3,24 +3,26 @@ Geburtstag Karte für Luca
 [![Docker Image CI](https://github.com/Fingadumbledore/Luca-Geburtstag/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Fingadumbledore/Luca-Geburtstag/actions/workflows/docker-image.yml)
 
 ![Screenshot.](IMG_0004.jpg)
-## Installation
-* clone repo `git clone https://github.com/Fingadumbledore/Luca-Geburtstag.git`
-* **You have to verify yourself with your Github login data**
+
+
+
 
 
 ### Automatic installation 
-1. `bash setup.sh`
-2. `cd /backend`
-3. `bash db.sh`
-### Manual installation
+#### (Debian & Ubuntu)
+1. `sudo bash ./setup.sh`
+#### (Arch)
+1. `sudo bash ./setup-arch.sh`
 
-1. `bash setup.sh`
-2. `cd /backend`
-3. `docker-compose build`
-4. `docker-compose up` additionally `-d` can be attached so that the container runs in the background
+### Development
+* clone repo `git clone https://github.com/Fingadumbledore/Luca-Geburtstag.git`
+* **You have to verify yourself with your Github login data**
+### Debugging
 
-`docker-compose stop` to stop the db container
-with `docker ps` you can see the currently running containers
+`bash clean.sh`
 
-to enter the container, just type `docker exec -it <container id> bash`
+## TODO
 
+### SQL injection
+
+Endpoint muss werte geben
