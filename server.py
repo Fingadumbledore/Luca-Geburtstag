@@ -1,8 +1,8 @@
-from flask import Flask, render_template, jsonify, request, session
+from flask import Flask, render_template, jsonify, request, session, url_for
 import sqlite3
 import time
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates/')
 con = sqlite3.connect("login.db")
 cur = con.cursor()
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
@@ -50,7 +50,7 @@ def json_from(ls: list):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return url_for("index.html")
 
 
 @app.route("/search")
@@ -72,7 +72,7 @@ def search():
     print(dict(js))
     print(jsonify(dict(js)))
 
-    return render_template("results.html")
+    return url_for("results.html")
 
 
 @app.route("/login", methods=['POST'])
