@@ -7,11 +7,19 @@ import re
 app = Flask(__name__)
 con = sqlite3.connect("login.db")
 cur = con.cursor()
+date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
+log = date
 
+def log_server(self, log):
+        datei = open('server.log', 'a')
+        datei.write('\n' + " " + log)
+        log = date
+        datei.close()
 
 @app.route("/")
 def index():
     return render_template("index.html")
+  
 
 def json_from(ls: list):
     # json = "["
@@ -101,7 +109,6 @@ def hilfe():
 def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('troll.html'), 404
-
 
 def create_app(config_filename):
    
