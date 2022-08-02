@@ -83,7 +83,19 @@ def login():
 
 @app.route("/matrix")
 def matrix():
-    return render_template(matrix.html)
+    return render_template('matrix.html')
+
+@app.route("/raetsel")
+def raetsel():
+    return render_template('raetsel.html')
+
+@app.route("/rot")
+def rot():
+    return render_template('rot.html')
+
+@app.route("/hilfe")
+def hilfe():
+    return render_template('selbsthilfe.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
