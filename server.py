@@ -5,8 +5,8 @@ import urllib.parse
 import re
 
 app = Flask(__name__)
-connection = sqlite3.connect("login.db")
-cursor = connection.cursor()
+con = sqlite3.connect("login.db")
+cur = con.cursor()
 
 
 @app.route("/")
@@ -77,7 +77,7 @@ def login():
             session['id'] = account['id']
             session['username'] = account['username']
             return render_template("login.html")
-        else return "{ \"message\": \"Login failed\"'}"
+        else: return "{ \"message\": \"Login failed\"'}"
 
 
 @app.route("/matrix")
