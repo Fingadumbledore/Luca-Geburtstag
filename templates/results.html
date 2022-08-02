@@ -1,8 +1,22 @@
 <html>
 <head>
 
-</head>
 <body>
   <h1>test</h1>
+  <button onclick="asd()">test</button>
+  <script>
+    function asd() {
+      console.log(window.location.href)
+      fetch(window.location.href, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(data=>{return data.json()})
+      .then(res =>{console.log(res)})
+    }
+  </script>
 </body>
 </html

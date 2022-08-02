@@ -53,10 +53,14 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/search")
+@app.route("/search", methods=['GET'])
 def search():
+    return render_template("results.html")
+
+
+@app.route("/search", methods=['POST'])
+def post_search():
     con = sqlite3.connect("login.db")
-    cur = con.cursor()
     cur = con.cursor()
 
     n1 = request.args['search-type']
@@ -66,8 +70,10 @@ def search():
     cur.execute(q)
     content = cur.fetchall()
     js = json_from(content)
-
-    return render_template("results.html", jsonfile=js)
+    for i in range(len(js)):
+        js[i] = js[i].decode("utf-8")
+        print(js[i])
+    return jsonify(str(js))
 
 
 @app.route("/login", methods=['POST'])
