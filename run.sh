@@ -1,7 +1,7 @@
 python3 database.py
 export FLASK_APP=server.py
 if [ -z $@ ]; then
-  echo "please pass browser as argument."
+  echo "please pass browser as argument, pass _, to get rid of this warning"
   exit 0
 fi
 

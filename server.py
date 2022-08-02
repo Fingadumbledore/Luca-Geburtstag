@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, session, url_for
+from flask import Flask, render_template, jsonify, request, session
 import sqlite3
 import time
 #from flask_login import login_required, current_user
@@ -24,19 +24,6 @@ def index():
 
 
 def json_from(ls: list):
-    # json = "["
-    # for item in ls:
-    #     json += "\n\t{"
-    #     json += "\n\t\tItemId: "
-    #     json += str(item[0])
-    #     json += ",\n\t\tItemName: "
-    #     json += str(item[1])
-    #     json += ",\n\t\tItemBeschreibung: "
-    #     json += str(item[2]) + "\n\t"
-    #     json += "},\n"
-    # json += "]"
-    # print(json)
-    # return json
     lis = []
     for item in ls:
         x = jsonify(
@@ -74,7 +61,7 @@ def post_search():
     for i in range(len(js)):
         js[i] = js[i].decode("utf-8")
         print(js[i])
-    return jsonify(str(js))
+    return jsonify(js)
 
 
 @app.route("/login", methods=['POST'])
