@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, request, session
 import sqlite3
+import time
 
 app = Flask(__name__)
 con = sqlite3.connect("login.db")
@@ -7,16 +8,19 @@ cur = con.cursor()
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
 
+
 def log_server(self, log):
-        datei = open('server.log', 'a')
-        datei.write('\n' + " " + log)
-        log = date
-        datei.close()
+    datei = open('server.log', 'a')
+    datei.write('\n' + " " + log)
+    log = date
+    datei.close()
+
+
 """
 @app.route("/")
 def index():
     return render_template("index.html")"""
-  
+
 
 def json_from(ls: list):
     # json = "["
@@ -73,7 +77,7 @@ def search():
 
 @app.route("/login", methods=['POST'])
 def login():
-    print ("login")
+    print("login")
     if 'uname' in request.form and 'psw' in request.form:
         con = sqlite3.connect("login.db")
         cur = con.cursor()
@@ -99,24 +103,28 @@ def login():
 def matrix():
     return render_template('matrix.html')
 
+
 @app.route("/raetsel")
 def raetsel():
     return render_template('raetsel.html')
+
 
 @app.route("/rot")
 def rot():
     return render_template('rot.html')
 
+
 @app.route("/hilfe")
 def hilfe():
     return render_template('selbsthilfe.html')
+
 
 @app.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('troll.html'), 404
 
+
 def create_app(config_filename):
-   
     app.register_error_handler(404, page_not_found)
     return app
