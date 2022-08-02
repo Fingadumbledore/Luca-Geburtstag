@@ -59,17 +59,15 @@ def search():
     cur = con.cursor()
     cur = con.cursor()
 
-    print(request.args)
     n1 = request.args['search-type']
     n2 = request.args['query']
 
     q = f"select * from Item where {n1} is \'{n2}\'"
-    print(q)
     cur.execute(q)
     content = cur.fetchall()
     js = json_from(content)
 
-    return render_template("results.html")
+    return render_template("results.html", jsonfile=js)
 
 
 @app.route("/login", methods=['POST'])
