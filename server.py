@@ -1,6 +1,5 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
 import sqlite3
-<<<<<<< HEAD
 import urllib
 import urllib.parse
 import re
@@ -8,13 +7,6 @@ import re
 app = Flask(__name__)
 connection = sqlite3.connect("login.db")
 cursor = connection.cursor()
-=======
-import re
-
-app = Flask(__name__)
-con = sqlite3.connect("login.db")
-cur = con.cursor()
->>>>>>> 3474c73 (overwrite changes)
 
 
 @app.route("/")
@@ -72,25 +64,6 @@ def search():
 
 @app.route("/login", methods= ['POST'])
 def login():
-<<<<<<< HEAD
-     if request.method == 'POST' and 'uname' in request.form and 'psw' in request.form:
-        
-        username = request.form['uname']
-        password = request.form['psw']
-     
-        cursor.execute('SELECT * FROM user WHERE username = %s AND password = %s', (username, password,))
-        
-        account = cursor.fetchone()
-       
-     if account:
-            # Create session data, we can access this data in other routes
-            session['loggedin'] = True
-            session['id'] = account['id']
-            session['username'] = account['username']
-            # Redirect to home page
-            return render_template("login.html")
-    
-=======
     if 'uname' in request.form and 'psw' in request.form:
         username = request.form['uname']
         password = request.form['psw']
@@ -105,7 +78,6 @@ def login():
             session['username'] = account['username']
             return render_template("login.html")
         else return "{ \"message\": \"Login failed\"'}"
->>>>>>> 3474c73 (overwrite changes)
 
 
 @app.route("/matrix")
