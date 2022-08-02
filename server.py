@@ -1,17 +1,8 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for, session
+from flask import Flask, render_template, jsonify, request, session
 import sqlite3
-import urllib
-import urllib.parse
-import re
 
 app = Flask(__name__)
-con = sqlite3.connect("login.db")
-cur = con.cursor()
 
-
-@app.route("/")
-def index():
-    return render_template("index.html")
 
 def json_from(ls: list):
     # json = "["
@@ -27,58 +18,67 @@ def json_from(ls: list):
     # json += "]"
     # print(json)
     # return json
+    lis = []
     for item in ls:
         x = jsonify(
             Itemid=str(item[0]),
             ItemName=str(item[1]),
             ItemBeschreibung=str(item[2])
-        )
-        print(x)
+        ).response[0]
+        lis.append(x)
+
+    return lis
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 
 @app.route("/search")
 def search():
-#    verbindung = sqlite3.connect("login.db")
-#    zeiger = verbindung.cursor()
-#    obj = urllib.parse.parse_qs()
-#
-#    try:
-#        query = f"select * from Item where {obj['search-type'][0]} is '{obj['query'][0]}';"
-#        print(query)
-#        zeiger.execute(query)
-#        inhalt = zeiger.fetchall()
-#        print(inhalt)
-#        verbindung.close()
-#        json_from(inhalt)
-#
-#    except KeyError as e:
-#        print("error: " + str(type(e)))
+    con = sqlite3.connect("login.db")
+    cur = con.cursor()
+    cur = con.cursor()
 
     print(request.args)
     n1 = request.args['search-type']
     n2 = request.args['query']
 
+    q = f"select * from Item where {n1} is \'{n2}\'"
+    print(q)
+    cur.execute(q)
+    content = cur.fetchall()
+    js = json_from(content)
+    print(js)
+    print(dict(js))
+    print(jsonify(dict(js)))
 
     return render_template("results.html")
- 
 
-@app.route("/login", methods= ['POST'])
+
+@app.route("/login", methods=['POST'])
 def login():
     print ("login")
     if 'uname' in request.form and 'psw' in request.form:
+        con = sqlite3.connect("login.db")
+        cur = con.cursor()
         username = request.form['uname']
         password = request.form['psw']
-    
-        cur.execute('select * from user where username = %s and password = %s', (username, password))
-    
+
+        # das nicht benutzen, weil es sql-injections nicht erlaubt
+        cur.execute('select * from user where username = %s and password = %s',
+                    (username, password))
+
         account = cur.fetchone()
-    
+
         if account:
             session['loggedin'] = True
             session['id'] = account['id']
             session['username'] = account['username']
             return render_template("login.html")
-        else: return "{ \"message\": \"Login failed\"'}"
+        else:
+            return "{ \"message\": \"Login failed\"'}"
 
 
 @app.route("/matrix")
