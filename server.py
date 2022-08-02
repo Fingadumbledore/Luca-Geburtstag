@@ -64,6 +64,7 @@ def search():
 
 @app.route("/login", methods= ['POST'])
 def login():
+    print ("login")
     if 'uname' in request.form and 'psw' in request.form:
         username = request.form['uname']
         password = request.form['psw']
@@ -83,3 +84,14 @@ def login():
 @app.route("/matrix")
 def matrix():
     return render_template(matrix.html)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('troll.html'), 404
+
+
+def create_app(config_filename):
+   
+    app.register_error_handler(404, page_not_found)
+    return app
