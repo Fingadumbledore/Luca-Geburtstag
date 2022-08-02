@@ -50,7 +50,7 @@ def json_from(ls: list):
 
 @app.route("/")
 def index():
-    return url_for("index.html")
+    return render_template("index.html")
 
 
 @app.route("/search")
@@ -68,11 +68,8 @@ def search():
     cur.execute(q)
     content = cur.fetchall()
     js = json_from(content)
-    print(js)
-    print(dict(js))
-    print(jsonify(dict(js)))
 
-    return url_for("results.html")
+    return render_template("results.html")
 
 
 @app.route("/login", methods=['POST'])
