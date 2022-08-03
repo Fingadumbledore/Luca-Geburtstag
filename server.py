@@ -33,19 +33,19 @@ def json_from(ls: list):
 
 @app.route("/")
 def index():
-    log_server("/ called")
+    log_server("called /")
     return render_template("index.html")
 
 
 @app.route("/search", methods=['GET'])
 def search():
-    log_server("/search called with GET")
+    log_server("called /search with GET")
     return render_template("results.html")
 
 
 @app.route("/search", methods=['POST'])
 def post_search():
-    log_server("/search called with POST")
+    log_server("called /search with POST")
     con = sqlite3.connect("login.db")
     cur = con.cursor()
 
