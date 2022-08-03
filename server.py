@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request, session
 import sqlite3
 import time
-#from flask_login import login_required, current_user
+# from flask_login import login_required, current_user
 
 app = Flask(__name__, template_folder='templates/')
 con = sqlite3.connect("login.db")
@@ -15,12 +15,6 @@ def log_server(self, log):
     datei.write('\n' + " " + log)
     log = date
     datei.close()
-
-
-"""
-@app.route("/")
-def index():
-    return render_template("index.html")"""
 
 
 def json_from(ls: list):
@@ -67,16 +61,16 @@ def post_search():
 @app.route("/login", methods=['POST'])
 def login():
     print("login")
-    
+
     con = sqlite3.connect("login.db")
     cur = con.cursor()
     username = request.form['uname']
     password = request.form['psw']
 
-        # das nicht benutzen, weil es sql-injections nicht erlaubt
-    cur.execute('select * from user where username = %s and password = %s',(username, password))
+    # das nicht benutzen, weil es sql-injections nicht erlaubt
+    cur.execute('select * from user where username = %s and password = %s',
+                (username, password))
 
-                    
     account = cur.fetchone()
 
     if account:
@@ -87,12 +81,14 @@ def login():
     else:
         return "{ \"message\": \"Login failed\"'}"
 
+
 @app.route('/logout')
 def logout():
     return render_template('logout.html')
 
+
 @app.route("/matrix")
-#@login_required
+# @login_required
 def matrix():
     return render_template('matrix.html')
 
@@ -106,6 +102,7 @@ def raetsel():
 def rot():
     return render_template('rot.html')
 
+
 @app.route("/werbung")
 def werbung():
     return render_template('werbung.html')
@@ -114,6 +111,7 @@ def werbung():
 @app.route("/hilfe")
 def hilfe():
     return render_template('selbsthilfe.html')
+
 
 @app.route("/datenschutz")
 def datenschutz():
