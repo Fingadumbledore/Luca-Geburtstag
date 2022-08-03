@@ -119,6 +119,10 @@ def raetsel():
 def rot():
     return render_template('rot.html')
 
+@app.route("/werbung")
+def werbung():
+    return render_template('werbung.html')
+
 
 @app.route("/hilfe")
 def hilfe():
