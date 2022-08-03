@@ -73,7 +73,7 @@ def login():
     cur = con.cursor()
     username = request.form['uname']
     password = request.form['psw']
-    l = f"select * from user where username = {username} and password = {password}"
+    l = f"select * from user where username = \'{username}\' and password =\'{password}\';"
     # das nicht benutzen, weil es sql-injections nicht erlaubt
     #cur.execute(f'select * from user where username = %s and password = %s',
      #           (username, password))
