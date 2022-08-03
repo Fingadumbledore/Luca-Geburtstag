@@ -85,7 +85,7 @@ def login():
     if account:
         session['loggedin'] = True
        # session['username'] = account['username']
-        return redirect('/')
+        return redirect('/matrix')
     else:
         return "{ \"message\": \"Login failed\"'}"
 
