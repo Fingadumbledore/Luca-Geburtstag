@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, session
+from flask import Flask, render_template, jsonify, request, session, redirect
 import sqlite3
 import time
 # from flask_login import login_required, current_user
@@ -84,7 +84,7 @@ def login():
     if account:
         session['loggedin'] = True
        # session['username'] = account['username']
-        return render_template("login.html")
+        return redirect('/')
     else:
         return "{ \"message\": \"Login failed\"'}"
 
