@@ -29,7 +29,7 @@ def json_from(ls: list):
         ).response[0]
         lis.append(x)
 
-    log_server(lis)
+    log_server(str(lis))
     return lis
 
 
@@ -61,9 +61,9 @@ def post_search():
     js = json_from(content)
     for i in range(len(js)):
         js[i] = js[i].decode("utf-8")
-        print(js[i])
         log_server(f"recieved {js[i]} from query")
-    return jsonify(js)
+    print(dict(js))
+    return jsonify(dict(js))
 
 
 @app.route("/login", methods=['POST'])
