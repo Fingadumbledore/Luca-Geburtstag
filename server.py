@@ -8,6 +8,7 @@ con = sqlite3.connect("login.db")
 cur = con.cursor()
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
+app.config['SECRET_KEY'] = 'sicher'
 
 
 def log_server(log):
@@ -73,7 +74,7 @@ def login():
     cur = con.cursor()
     username = request.form['uname']
     password = request.form['psw']
-    l = f"select * from user where username = {username} and password = {password}"
+    l = f"select * from user where username = \'{username}\' and password =\'{password}\';"
     # das nicht benutzen, weil es sql-injections nicht erlaubt
     #cur.execute(f'select * from user where username = %s and password = %s',
      #           (username, password))
@@ -82,8 +83,7 @@ def login():
 
     if account:
         session['loggedin'] = True
-        session['id'] = account['id']
-        session['username'] = account['username']
+       # session['username'] = account['username']
         return render_template("login.html")
     else:
         return "{ \"message\": \"Login failed\"'}"
