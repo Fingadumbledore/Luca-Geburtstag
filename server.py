@@ -100,6 +100,9 @@ def login():
     else:
         return "{ \"message\": \"Login failed\"'}"
 
+@app.route('/logout')
+def logout():
+    return render_template('logout.html')
 
 @app.route("/matrix")
 #@login_required
