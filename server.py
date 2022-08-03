@@ -150,13 +150,10 @@ def werbung():
 @app.route("/hilfe")
 def hilfe():
     
-    if session:
+  
         log_server("called /hilfe")
         return render_template('selbsthilfe.html')
-    else: 
-         return render_template('troll.html')
-         log_server("called /hilfe without being logged in")
-
+   
 
 @app.route("/datenschutz")
 def datenschutz():
