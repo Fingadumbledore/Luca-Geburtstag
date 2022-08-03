@@ -15,11 +15,16 @@
                 background-position: center;
                 height: 100%;
             }
-            canvas {display: block;
+            canvas {
+                    display: block;
                     opacity: 0.5;
-            
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    z-index: -1;
             }
             button {
+<<<<<<< HEAD
                     background-color: transparent;
                     background-repeat: no-repeat;
                     border: none;
@@ -29,6 +34,21 @@
                 }
 
         
+=======
+                    margin-top:730px;
+                    margin-left:110px;
+                    margin-right:110px;
+                    border-radius:40%;
+                    height: 20px;
+                    width: 40px
+            }
+            .blue {
+                    background-color: blue;
+                  }
+            .red {
+                    background-color: red;
+                }
+>>>>>>> 84386ca (fixed pills)
             
         </style>
     </head>
@@ -37,12 +57,9 @@
 
 
 
- 
-        <center><button onclick="window.location.href='/rot';">
-            Rot
+        <center><button class="red" onclick="window.location.href='/rot';">
           </button>
-        <button onclick="window.location.href='/logout';">
-            Blau
+        <button class="blue" onclick="window.location.href='/logout';">
           </button></center>
         </br>
          <center> <a href="/hilfe" target="_blank"> hilfe</a></center>
@@ -62,7 +79,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // Setting up the letters
-var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+=][""{}}]';
+var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+=][{}}]';
 letters = letters.split('');
 
 // Setting up the columns
