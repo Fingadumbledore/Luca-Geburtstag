@@ -68,7 +68,7 @@ def post_search():
 @app.route("/login", methods=['POST'])
 def login():
     log_server("called /login with POST")
-    print("login")
+    
 
     con = sqlite3.connect("login.db")
     cur = con.cursor()
@@ -94,6 +94,7 @@ def logout():
     log_server("called /logout")
     if session:
         return render_template('logout.html')
+        session['loggedin'] = False
     else: 
          return render_template('troll.html')
 
