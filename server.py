@@ -128,6 +128,10 @@ def werbung():
 def hilfe():
     return render_template('selbsthilfe.html')
 
+@app.route("/datenschutz")
+def datenschutz():
+    return render_template('Datenschutz.html')
+
 
 @app.errorhandler(404)
 def page_not_found(e):
