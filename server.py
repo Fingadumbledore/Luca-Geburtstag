@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request, session, url_for
 import sqlite3
 import time
+#from flask_login import login_required, current_user
 
 app = Flask(__name__, template_folder='templates/')
 con = sqlite3.connect("login.db")
@@ -79,28 +80,29 @@ def post_search():
 @app.route("/login", methods=['POST'])
 def login():
     print("login")
-    if 'uname' in request.form and 'psw' in request.form:
-        con = sqlite3.connect("login.db")
-        cur = con.cursor()
-        username = request.form['uname']
-        password = request.form['psw']
+    
+    con = sqlite3.connect("login.db")
+    cur = con.cursor()
+    username = request.form['uname']
+    password = request.form['psw']
 
         # das nicht benutzen, weil es sql-injections nicht erlaubt
-        cur.execute('select * from user where username = %s and password = %s',
-                    (username, password))
+    cur.execute('select * from user where username = %s and password = %s',(username, password))
 
-        account = cur.fetchone()
+                    
+    account = cur.fetchone()
 
-        if account:
-            session['loggedin'] = True
-            session['id'] = account['id']
-            session['username'] = account['username']
-            return render_template("login.html")
-        else:
-            return "{ \"message\": \"Login failed\"'}"
+    if account:
+        session['loggedin'] = True
+        session['id'] = account['id']
+        session['username'] = account['username']
+        return render_template("login.html")
+    else:
+        return "{ \"message\": \"Login failed\"'}"
 
 
 @app.route("/matrix")
+#@login_required
 def matrix():
     return render_template('matrix.html')
 
