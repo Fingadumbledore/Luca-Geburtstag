@@ -92,44 +92,65 @@ def login():
 @app.route('/logout')
 def logout():
     log_server("called /logout")
-    return render_template('logout.html')
+    if session:
+        return render_template('logout.html')
+    else: 
+         return render_template('troll.html')
 
 
 @app.route("/matrix")
 # @login_required
 def matrix():
     log_server("called /matrix")
-    return render_template('matrix.html')
+    if session:
+        return render_template('matrix.html')
+    else: 
+         return render_template('troll.html')
 
 
 @app.route("/raetsel")
 def raetsel():
     log_server("called /raetsel")
-    return render_template('raetsel.html')
+    if session:
+     return render_template('raetsel.html')
+    else: 
+         return render_template('troll.html')
 
 
 @app.route("/rot")
 def rot():
     log_server("called /rot")
-    return render_template('rot.html')
+    if session:
+        return render_template('rot.html')
+    else: 
+         return render_template('troll.html')
 
 
 @app.route("/werbung")
 def werbung():
     log_server("called /werbung")
-    return render_template('werbung.html')
+    if session:
+        return render_template('werbung.html')
+    else: 
+         return render_template('troll.html')
 
 
 @app.route("/hilfe")
 def hilfe():
     log_server("called /hilfe")
-    return render_template('selbsthilfe.html')
+    if session:
+        return render_template('selbsthilfe.html')
+    else: 
+         return render_template('troll.html')
 
 
 @app.route("/datenschutz")
 def datenschutz():
     log_server("called /datenschutz")
-    return render_template('Datenschutz.html')
+    if session:
+        return render_template('Datenschutz.html')
+    else: 
+         return render_template('troll.html')
 
 
 @app.errorhandler(404)
