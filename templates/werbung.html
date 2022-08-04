@@ -7,5 +7,24 @@
     </head>
     <body>
        <center> <h1>Hier könnte Ihre werbung Stehen</h1></center>
+       <center><button onclick="randomSound()">Click for a sound</button></center>
+       <img src="https://www.supermarkt-inside.de/wp-content/uploads/2019/04/Bildschirmfoto-2019-04-01-um-14.27.54-e1554121723779.png" >
+       <img src="https://cms-images.mmst.eu/fw7ws5lvie5f/4o5rHV1bxCOBJ52RNBFyJO/2f937ea99bf66c2fb1ac98a634cb8629/header-bl-dsk-mobSA_LP_BN-Singles-Day__2_.png?q=80" >
+
+        <audio id="sound1" src="../static/sound/BEST BAZINGA SOUND EFFECT-ZeQIRxUzPAU.mp3" type="audio/wav">
+        <audio id="sound2" src="../static/sound/Mr. Robot - Fuck Society (subtitled)-wOWVgTwRCJk.mp3" type="audio/wav">
+        <audio id="sound3" src="../static/sound/Klopfen Sound-jaUGc7L5Vic.mp3" type="audio/wav">
+        <audio id="sound4" src="../static/sound/Nice Sound Effect _ VineRko-xwjVuvJUTUA.mp3" type="audio/wav">
+        <audio id="sound5" src="../static/sound/Uff sound-UjkcdQqV2eQ.mp3" type="audio/wav">
+            <script>
+            mySounds = [ 'sound1', 'sound2', 'sound3', 'sound4', 'sound5' ]
+            function randomSound() {
+                var index = Math.floor(Math.random() * 1000) % mySounds.length;
+                var id = mySounds[index];
+                var audioElement = document.getElementById(id);
+                audioElement.play();
+            }
+            
+        </script>
     </body>
 </html>
