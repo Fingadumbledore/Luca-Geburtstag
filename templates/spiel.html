@@ -18,11 +18,19 @@
         <form id = "fuss"> 
     
             <input type="number" id="guessField"> 
-            <button type="button" id="submitguess">Next</button> 
+            <button type="button" id="submitfuss">Next</button> 
+        </form>
+        <p><b>Aufgabe 1</b></p>
+        <p>Wie viel sind </p><script>function fussgenerator(){  var min = 1; var max = 512; var c = Math.round(Math.random() * (max - min +1)) + min; document.write(c);} fussgenerator();</script>  <p> Meilen in Kilometer?</p>
+        <form id = "meilen"> 
+    
+            <input type="number" id="guessField"> 
+            <button type="button" id="submitmeilen">Next</button> 
         </form>
 
         <script>
-            document.querySelector('#submitguess').addEventListener('click', checkfuss);	
+            document.querySelector('#submitfuss').addEventListener('click', checkfuss);	
+            document.querySelector('#submitmeilen').addEventListener('click', checkmeilen);
             function checkfuss () {
                 'use strict';
                  
@@ -34,6 +42,25 @@
 	            output =  document.querySelector('output')
 
                 if (input == fuss){
+
+                    document.write("richtig")
+                }
+                else{
+                    document.write("falsch")
+                }
+
+            }
+            function checkfuss () {
+                'use strict';
+                 
+
+                var meile = "0,621371"
+                
+
+	            let input = document.getElementById('guessField'),
+	            output =  document.querySelector('output')
+
+                if (input == meile){
 
                     document.write("richtig")
                 }
