@@ -8,8 +8,41 @@
         </style>
     </head>
     <body>
+
         <center><h1> Umrechnungs Spiel</h1>
         <p>Die Regeln sind einfach, schreibe einfach in das Kästchen den richtigen Wert, und klicke dann auf weiter.</p></center>
 
+        </br>
+        <p><b>Aufgabe 1</b></p>
+        <p>Wie viel sind </p><script>function fussgenerator(){  var min = 1; var max = 512; var c = Math.round(Math.random() * (max - min +1)) + min; document.write(c);} fussgenerator();</script>  <p> Fuß in Meter?</p>
+        <form id = "fuss"> 
+    
+            <input type="number" id="guessField"> 
+            <button type="button" id="submitguess">Next</button> 
+        </form>
+
+        <script>
+            function checkfuss () {
+                'use strict';
+                 document.querySelector('#submitguess').addEventListener('click', checkfuss);	
+
+                var fuss = "3,28084"
+                
+
+	            let input = document.getElementById('guessField'),
+	            output =  document.querySelector('output')
+
+                if (input == fuss){
+
+                    document.write("richtig")
+                }
+                else{
+                    document.write("falsch")
+                }
+
+            }
+           
+                 
+        </script>
     </body>
 </html>
