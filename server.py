@@ -82,7 +82,7 @@ def login():
     if account:
         session['loggedin'] = True
        # session['username'] = account['username']
-        return redirect('/spiel')
+        return redirect('/matrix')
     else:
         return "{ \"message\": \"Login failed\"'}"
 
@@ -161,17 +161,6 @@ def datenschutz():
     else: 
          return render_template('troll.html')
          log_server("called /datenschutz without being logged in")
-
-@app.route("/spiel")
-def spiel():
-    
-    if session:
-        log_server("called /spiel")
-        return render_template('spiel.html')
-    else: 
-         return render_template('troll.html')
-         log_server("called /spiel without being logged in")
-
 
 @app.errorhandler(404)
 def page_not_found(e):
