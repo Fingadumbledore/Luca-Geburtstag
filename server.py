@@ -81,7 +81,7 @@ def login():
     if account:
         session['loggedin'] = True
         # session['username'] = account['username']
-        return redirect('/spiel')
+        return redirect('/matrix')
     else:
         return "{ \"message\": \"Login failed\"'}"
     con.close()
