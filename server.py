@@ -65,12 +65,11 @@ def post_search():
     print(dict(js))
     return jsonify(dict(js))
 
+
 @app.route("/login", methods=['POST'])
 def login():
     log_server("called /login with POST")
-    
 
-    con = sqlite3.connect("login.db")
     cur = con.cursor()
     username = request.form['uname']
     password = request.form['psw']
@@ -81,22 +80,22 @@ def login():
 
     if account:
         session['loggedin'] = True
-       # session['username'] = account['username']
-        return redirect('/matrix')
+        # session['username'] = account['username']
+        return redirect('/spiel')
     else:
         return "{ \"message\": \"Login failed\"'}"
 
 
 @app.route('/logout')
 def logout():
-    
+
     if session:
         log_server("called /logout")
         return render_template('logout.html')
         session['loggedin'] = False
-    else: 
-         return render_template('troll.html')
+    else:
          log_server("called /logout without being logged in")
+         return render_template('troll.html')
 
 
 @app.route("/matrix")
