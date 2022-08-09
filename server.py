@@ -4,8 +4,6 @@ import time
 # from flask_login import login_required, current_user
 
 app = Flask(__name__, template_folder='templates/')
-con = sqlite3.connect("login.db")
-cur = con.cursor()
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
 app.config['SECRET_KEY'] = 'sicher'
@@ -63,14 +61,16 @@ def post_search():
         js[i] = js[i].decode("utf-8")
         log_server(f"recieved {js[i]} from query")
     print(dict(js))
+    con.close()
     return jsonify(dict(js))
 
 
 @app.route("/login", methods=['POST'])
 def login():
+    con = sqlite3.connect("login.db")
+    cur = con.cursor()
     log_server("called /login with POST")
 
-    cur = con.cursor()
     username = request.form['uname']
     password = request.form['psw']
     l = f"select * from user where username = \'{username}\' and password =\'{password}\';"
@@ -84,6 +84,7 @@ def login():
         return redirect('/spiel')
     else:
         return "{ \"message\": \"Login failed\"'}"
+    con.close()
 
 
 @app.route('/logout')
