@@ -56,18 +56,24 @@ def post_search():
 
     n1 = request.args['search-type']
     n2 = request.args['query']
+    print(n1)
+    print(n2)
 
     q = f"select * from Item where {n1} is \'{n2}\'"
+    print(q)
     cur.execute(q)
     content = cur.fetchall()
+    print(content)
     log_server(f"executed {q}")
     js = json_from(content)
     for i in range(len(js)):
         js[i] = js[i].decode("utf-8")
         log_server(f"recieved {js[i]} from query")
-    print(dict(js))
+    print(js)
+    #print(js[0)
+    #print(dict(js[0]))
     con.close()
-    return jsonify(dict(js))
+    return jsonify(js[0])
 
 
 @app.route("/login", methods=['POST'])
