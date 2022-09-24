@@ -7,6 +7,7 @@ app = Flask(__name__, template_folder='templates/')
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
 app.config['SECRET_KEY'] = 'sicher'
+DEBUG = true
 
 
 def log_server(log):
@@ -15,6 +16,8 @@ def log_server(log):
     datei.write('\n' + " " + log)
     log = date
     datei.close()
+    if DEBUG:
+        print(log)
 
 
 def json_from(ls: list):
@@ -45,6 +48,8 @@ def search():
 
 @app.route("/search", methods=['POST'])
 def post_search():
+    args = request.args
+    print(args)
     log_server("called /search with POST")
     con = sqlite3.connect("login.db")
     cur = con.cursor()

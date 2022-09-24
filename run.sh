@@ -5,4 +5,4 @@ if [ -z $@ ]; then
   exit 0
 fi
 
-sleep 3& $@ 127.0.0.1:5000& flask run
+sleep 3; $@ 127.0.0.1:5000; flask run

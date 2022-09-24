@@ -17,7 +17,7 @@
           'Content-Type': 'application/json'
         }
       })
-      .then(data=>{return data.json()})
+      .then(data=>{console.log(data);return data.json()})
       .then(res =>{console.log(JSON.parse(res))})
     }
   </script>
