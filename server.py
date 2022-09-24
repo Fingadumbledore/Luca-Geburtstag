@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder='templates/')
 date = time.strftime("%d-%m-%Y %H:%M:%S", time.localtime(time.time()))
 log = date
 app.config['SECRET_KEY'] = 'sicher'
-DEBUG = true
+DEBUG = True
 
 
 def log_server(log):
