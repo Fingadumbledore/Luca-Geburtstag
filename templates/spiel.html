@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Rechen</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+        <style>
+
+        </style>
+    </head>
+    <body>
+
+        <center><h1> Lass uns ein Spiel spielen</h1>
+        <p>Die Regeln sind einfach, schreibe einfach in das Kästchen den richtigen Wert, und klicke dann auf weiter.</p></center>
+
+        </br>
+        <p><b>Aufgabe 1</b></p>
+        <p>Wie viel sind </p><script>function fussgenerator(){  var min = 1; var max = 512; var c = Math.round(Math.random() * (max - min +1)) + min; document.write(c);} fussgenerator();</script>  <p> Fuß in Meter?</p>
+        <form id = "fuss"> 
+    
+            <input type="number" id="guessField"> 
+            <button type="button" id="submitguess">Next</button> 
+        </form>
+
+        <script>
+            document.querySelector('#submitguess').addEventListener('click', checkfuss);	
+            function checkfuss () {
+                 
+
+                var fuss = "3,28084"
+                
+
+	            let input = document.getElementById('guessField'),
+	            output =  document.querySelector('output')
+                input = Math.round(input)
+
+                if (input == Math.round(fuss)){
+
+                    document.write("richtig")
+                }
+                else{
+                    document.write("falsch")
+                }
+
+            }
+           
+                 
+        </script>
+    </body>
+</html>

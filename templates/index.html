@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<title>Website</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="../static/img/ananas.webp">
+		<link rel="stylesheet" href="{{ url_for('static', filename='../static/css/style.css') }}">
+
+	</head>
+
+	<body>
+	
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+<label class="switch" for="input-id"/>
+  <input type="checkbox" checked onclick="myFunction()" id="input-id">
+  <span class="slider round"></span>
+</label>
+
+<script>
+function myFunction() {
+	var elements = [
+		document.body,
+		document.getElementsByClassName("modal-content")
+	]
+	for (let i of elements[1]) {i.classList.toggle("dark-mode")}
+	elements.forEach(element => element.classList.toggle("dark-mode"));
+}
+</script>
+
+<div id="id01" class="modal">
+
+  <form class="modal-content animate" action="http://127.0.0.1:5000/login" method="POST">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="../static/img/mrrobot.jpg" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+
+      <button type="submit">Login</button>
+
+    </div>
+	<div class="container">
+		<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+		<span class="psw">Forgot <a href="/hilfe">password?</a></span>
+	  </div>
+	</form>
+  </div>
+
+  <script>
+  // Get the modal
+  var modal = document.getElementById('id01');
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+	  if (event.target == modal) {
+		  modal.style.display = "none";
+	  }
+  }
+  </script>
+	
+	<center>
+		<h1>Herzlich Willkommen</h1>
+			<!--search als endpoint muss gehandelt werden, ueber nginx/nodejs/python-server oder so einfach an search.html mit parametern weiterleiten.-->
+			<form action="search">
+				<label for="search-type">Suchen:</label>
+				<select id="Typ" name="search-type">
+					<option value="ItemId">Id</option>
+					<option value="ItemName">ItemName</option>
+					<option value="ItemBeschreibung">ItemBeschreibung</option>
+				</select>
+				<input type="search" id="suche" name="query">
+				<button>Suchen...</button>
+			</form>
+
+			<a href="/hilfe" target="_blank"> hilfe</a>
+		</br>
+		</center>
+		
+
+
+
+
+
+
+
+
+
+
+		  <div id="footer-cookie">
+			<span id="description">
+			  Wir essen Cookies, um unsere Dienste zu erbringen und zu verschlechtern. Mit Nutzung dieser Seite akzeptieren Sie nicht Cookies. <a href="/datenschutz">Mehr erfahren</a>
+			</span>
+			<span id="accept"><a href="javascript:void(0)" title="Akzeptieren">Akzeptieren</a></span>
+		  </div>
+		
+		  <script>
+			var footerCookie = document.querySelector("#footer-cookie");
+			var footerCookieAccept = document.querySelector("#accept");
+		
+			if (document.cookie.indexOf("dakitecCookieBanner=") == -1) {
+			  footerCookie.style.display = "block";
+			}
+		
+			footerCookieAccept.onclick = function(e) {
+			  var cookieDate = new Date();
+			  cookieDate.setTime(new Date().getTime() + 31104000000);
+		
+			  document.cookie = "dakitecCookieBanner = 1; path=/; secure; expires=" + cookieDate.toUTCString();
+		
+			  footerCookie.style.display = "none";
+			};
+		  </script>
+
+
+
+
+
+	</body>
+</html>

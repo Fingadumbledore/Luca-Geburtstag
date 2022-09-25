@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>&#x1F50E;Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <h1>test</h1>
+  <button onclick="asd()">test</button>
+  <script>
+    var x;
+    function asd() {
+      console.log(window.location.href)
+      fetch(window.location.href, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(data=>{console.log(data);return data.json()})
+      .then(res =>{console.log(JSON.parse(res))})
+    }
+    
+    asd()
+  </script>
+</body>
+</html
