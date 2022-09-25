@@ -156,13 +156,10 @@ def hilfe():
 
 @app.route("/datenschutz")
 def datenschutz():
-    
-    if session:
+   
         log_server("called /datenschutz")
         return render_template('Datenschutz.html')
-    else: 
-         return render_template('troll.html')
-         log_server("called /datenschutz without being logged in")
+  
 
 @app.errorhandler(404)
 def page_not_found(e):
