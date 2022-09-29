@@ -52,7 +52,13 @@
 
         <center><button class="red" onclick="window.location.href='/rot';">
           </button>
-        <button class="blue" onclick="window.location.href='/logout';">
+        <button class="blue" onclick="abmelden();">
+          <script>
+            function abmelden() {
+                sessionStorage.setItem('angemeldet', "no");
+                window.open('/logout');
+              }
+          </script>
           </button></center>
         </br>
          <center> <a href="/hilfe" target="_blank"> hilfe</a></center>
@@ -102,6 +108,11 @@ function draw() {
 
 // Loop the animation
 setInterval(draw, 33);
+
+var s = sessionStorage.getItem('angemeldet');
+    if (s != yes) {
+            window.location.replace("http://127.0.0.1:5000/troll.html")
+        }
 </script>
     </body>
 </html>

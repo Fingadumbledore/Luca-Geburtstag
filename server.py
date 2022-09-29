@@ -36,19 +36,19 @@ def json_from(ls: list):
 
 @app.route("/")
 def index():
-    log_server("called /")
+    log_server(" called /")
     return render_template("index.html")
 
 
 @app.route("/search", methods=['GET'])
 def search():
-    log_server("called /search with GET")
+    log_server(" called /search with GET")
     return render_template("results.html")
 
 
 @app.route("/search", methods=['POST'])
 def post_search():
-    log_server("called /search with POST")
+    log_server(" called /search with POST")
     con = sqlite3.connect("login.db")
     cur = con.cursor()
 
@@ -65,13 +65,14 @@ def post_search():
         log_server(f"recieved {js[i]} from query")
     con.close()
     return jsonify(js[0])
+    
 
 
 @app.route("/login", methods=['POST'])
 def login():
     con = sqlite3.connect("login.db")
     cur = con.cursor()
-    log_server("called /login with POST")
+    log_server(" called /login with POST")
 
     username = request.form['uname']
     password = request.form['psw']
@@ -93,11 +94,11 @@ def login():
 def logout():
 
     if session:
-        log_server("called /logout")
+        log_server(" called /logout")
         return render_template('logout.html')
         session['loggedin'] = False
     else:
-         log_server("called /logout without being logged in")
+         log_server(" called /logout without being logged in")
          return render_template('troll.html')
 
 
@@ -106,69 +107,70 @@ def logout():
 def matrix():
     
     if session:
-        log_server("called /matrix")
+        log_server(" called /matrix")
         return render_template('matrix.html')
     else: 
          return render_template('troll.html')
-         log_server("called /matrix without being logged in")
+         log_server(" called /matrix without being logged in")
 
 
 @app.route("/raetsel")
 def raetsel():
     
     if session:
-     log_server("called /raetsel")
+     log_server(" called /raetsel")
      return render_template('raetsel.html')
     else: 
          return render_template('troll.html')
-         log_server("called /raetsel without being logged in")
+         log_server(" called /raetsel without being logged in")
 
 
 @app.route("/rot")
 def rot():
     
     if session:
-        log_server("called /rot")
+        log_server(" called /rot")
         return render_template('rot.html')
     else: 
          return render_template('troll.html')
-         log_server("called /rot without being logged in")
+         log_server(" called /rot without being logged in")
 
 
 @app.route("/werbung")
 def werbung():
     
     if session:
-        log_server("called /werbung")
+        log_server(" called /werbung")
         return render_template('werbung.html')
     else: 
          return render_template('troll.html')
-         log_server("called /werbung without being logged in")
+         log_server(" called /werbung without being logged in")
 
 
 @app.route("/hilfe")
 def hilfe():
     
   
-        log_server("called /hilfe")
+        log_server(" called /hilfe")
         return render_template('selbsthilfe.html')
    
 
 @app.route("/datenschutz")
 def datenschutz():
    
-        log_server("called /datenschutz")
+        log_server(" called /datenschutz")
         return render_template('Datenschutz.html')
   
 
 @app.errorhandler(404)
 def page_not_found(e):
-    log_server("called non-existing page")
+    log_server(" called non-existing page")
     # note that we set the 404 status explicitly
     return render_template('troll.html'), 404
 
 
 def create_app(config_filename):
     app.register_error_handler(404, page_not_found)
-    log_server("created app")
+    log_server(" created app")
     return app
+   
