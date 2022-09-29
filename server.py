@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request, session, redirect
 import sqlite3
 import time
+import json
 # from flask_login import login_required, current_user
 
 app = Flask(__name__, template_folder='templates/')
@@ -21,14 +22,17 @@ def log_server(log):
 
 
 def json_from(ls: list):
+    print(ls)
     lis = []
-    for item in ls:
-        x = jsonify(
-            Itemid=str(item[0]),
-            ItemName=str(item[1]),
-            ItemBeschreibung=str(item[2])
-        ).response[0]
-        lis.append(x)
+    for t in ls:
+        for item in t:
+            print(item)
+            x = jsonify(
+                ItemId=str(item[0]),
+                ItemName=str(item[1]),
+                ItemBeschreibung=str(item[2])
+            ).response[0]
+            lis.append(x)
 
     log_server(str(lis))
     return lis
@@ -55,16 +59,20 @@ def post_search():
     n1 = request.args['search-type']
     n2 = request.args['query']
 
-    q = f"select * from Item where {n1} is \'{n2}\'"
-    cur.execute(q)
-    content = cur.fetchall()
-    log_server(f"executed {q}")
-    js = json_from(content)
+    qs = f"select * from Item where {n1} is \'{n2}\';"
+    r = []
+    for q in qs.split(";"):
+        cur.execute(q)
+        r.append(cur.fetchall())
+        log_server(f"executed {q}")
+    js = json_from(r)
+    print("js:"+str(js))
     for i in range(len(js)):
         js[i] = js[i].decode("utf-8")
         log_server(f"recieved {js[i]} from query")
     con.close()
-    return jsonify(js[0])
+    print(str(json.dumps(js)))
+    return jsonify(json.dumps(js))
     
 
 
