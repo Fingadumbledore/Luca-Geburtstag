@@ -75,6 +75,12 @@ def post_search():
     return jsonify(json.dumps(js))
     
 
+@app.route("/deluser", methods=['POST'])
+def deluser():
+    args = request.args
+    q = f"delete * from User where "
+    print(args)
+    return []
 
 @app.route("/login", methods=['POST'])
 def login():
