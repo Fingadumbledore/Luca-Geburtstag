@@ -10021,7 +10021,10 @@
     function insert(n) {
             sessionStorage.clear();
             sessionStorage.setItem('buttonClicked', n);
-            window.location.href = "/raetsel"
+            if (n==0512)
+                window.location.href = "/raetsel"
+            else
+                window.location.href = "/troll.html"
         }
 </script>
 </body>
