@@ -30,12 +30,19 @@
       })
       .then(data=>{console.log(data);return data.json()})
       .then(res =>{
+          const table = document.getElementById("resbody");
           let rs = [];
           JSON.parse(res).forEach(item => {
-            rs.push(JSON.parse(item))
+            let r = JSON.parse(item)
+            console.log(r)
+            let row = table.insertRow()
+            let itemId = row.insertCell(0)
+            itemId.innerHTML = r["ItemId"]
+            let itemName = row.insertCell(1)
+            itemName.innerHTML = r["ItemName"]
+            let itemBeschreibung = row.insertCell(2)
+            itemBeschreibung.innerHTML = r["ItemBeschreibung"]
           })
-          let r = JSON.parse(res)[0] //wichtig
-          console.log(rs)
       })
     }
     
