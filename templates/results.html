@@ -4,8 +4,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <h1>test</h1>
-  <button onclick="asd()">test</button>
+  <div id="main">
+    <table id="results">
+      <thead>
+        <tr>
+          <th>ItemId</th>
+          <th>ItemName</th>
+          <th>ItemBeschreibung</th>
+        </tr>
+      </thead>
+      <tbody id="resbody"></tbody>
+    </table>
+    <p></p>
+  </div>
   <script>
     var x;
     function asd() {
@@ -18,7 +29,10 @@
         }
       })
       .then(data=>{console.log(data);return data.json()})
-      .then(res =>{console.log(JSON.parse(res))})
+      .then(res =>{
+          let r = JSON.parse(res)[0] //wichtig
+
+      })
     }
     
     asd()
