@@ -30,8 +30,12 @@
       })
       .then(data=>{console.log(data);return data.json()})
       .then(res =>{
+          let rs = [];
+          JSON.parse(res).forEach(item => {
+            rs.push(JSON.parse(item))
+          })
           let r = JSON.parse(res)[0] //wichtig
-
+          console.log(rs)
       })
     }
     
