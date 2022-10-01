@@ -59,7 +59,7 @@ def post_search():
     n1 = request.args['search-type']
     n2 = request.args['query']
 
-    qs = f"select * from Item where {n1} is \'{n2}\';"
+    qs = f"select * from Items where {n1} is \'{n2}\' COLLATE NOCASE;"
     r = []
     for q in qs.split(";"):
         cur.execute(q)

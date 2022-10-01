@@ -24,18 +24,31 @@ sql = "create table Items(\
        ItemBeschreibung text not null);"
 cursor.execute(sql)
 
-iv(0, 'KALLAX', 'Regal, 77x147 cm')
-iv (1, 'ALEX', 'Schreibtisch, 120x60 cm')
-iv(2, 'MICKE', 'Schreibtisch, 142,50 cm')
-iv(3, 'BEKANT', 'Ecktisch links, 160x110 cm')
-
 def iv(id, name, besch):
-      sql = f"INSERT INTO Items VALUES({id},\'{name}\',\'{besch}\')"
+      sql = f"INSERT INTO Items VALUES({id},\'{name}\',\'{besch}\');"
       connection = sqlite3.connect("login.db")
 
       # Datensatz-Cursor erzeugen
       cursor = connection.cursor()
       cursor.execute(sql)
+      connection.commit()
+      connection.close()
+
+iv(0, 'KALLAX', 'Regal, 77x147 cm')
+iv (1, 'ALEX', 'Schreibtisch, 120x60 cm')
+iv(2, 'MICKE', 'Schreibtisch, 142,50 cm')
+iv(3, 'BEKANT', 'Ecktisch links, 160x110 cm')
+iv(4, 'MALM', 'Bettgestell mit Aufbewahrung, weiss, 140x200 cm')
+iv(5, 'IDASEN', 'Hochschr. m Schublade und Türen, 45x172 cm')
+iv(6, "RASKOG", "Servierwagen, gelb, 35x45x78 cm")
+iv(7, "MALM", "Schreibtisch mit Ausziehplatte, weiss, 151x65 cm")
+iv(8, "BYGGET", "Recamiere/Bettsofa, Knisa/Dunkelgrau mit Stauraum")
+iv(9, "IDASEN", "Schubladenelement auf Rollen, dunkelgrau, 42x61")
+iv(23, "ILLUMINATEN", "eine kurzlebige Geheimgesellschaft")
+iv(42, "ANTWORT", "ultimative Frage nach dem Leben, dem Universum und dem ganzen Rest")
+# iv()
+
+
 
 # Datensatz erzeugen
 sql = "INSERT INTO user VALUES('Horst', " \
