@@ -18,11 +18,24 @@ sql = "CREATE TABLE user(" \
       "info TEXT);"
 cursor.execute(sql)
 
-sql = "create table Item(\
+sql = "create table Items(\
        ItemId int not null,\
        ItemName text not null,\
        ItemBeschreibung text not null);"
 cursor.execute(sql)
+
+iv(0, 'KALLAX', 'Regal, 77x147 cm')
+iv (1, 'ALEX', 'Schreibtisch, 120x60 cm')
+iv(2, 'MICKE', 'Schreibtisch, 142,50 cm')
+iv(3, 'BEKANT', 'Ecktisch links, 160x110 cm')
+
+def iv(id, name, besch):
+      sql = f"INSERT INTO Items VALUES({id},\'{name}\',\'{besch}\')"
+      connection = sqlite3.connect("login.db")
+
+      # Datensatz-Cursor erzeugen
+      cursor = connection.cursor()
+      cursor.execute(sql)
 
 # Datensatz erzeugen
 sql = "INSERT INTO user VALUES('Horst', " \
