@@ -61,7 +61,24 @@
     if (s != yes) {
             window.location.replace("http://127.0.0.1:5000/troll.html")
         }
-            var mySounds = [ 'sound1', 'sound2', 'sound3', 'sound4', 'sound5' , 'sound6' , 'sound7' , 'sound8' , 'sound9' , 'sound10' , 'sound11' , 'sound12' , 'sound13' , 'sound14' , 'sound15' , 'sound16' ]
+            var mySounds = [ 
+                        document.getElementById('sound1'), 
+                        document.getElementById('sound2'),
+                        document.getElementById('sound3'),
+                        document.getElementById('sound4'), 
+                        document.getElementById('sound5'), 
+                        document.getElementById('sound6'), 
+			document.getElementById('sound7'),
+			document.getElementById('sound8'),
+			document.getElementById('sound9'),
+			document.getElementById('sound10'),
+			document.getElementById('sound11'),
+			document.getElementById('sound12'),
+			document.getElementById('sound13'),
+			document.getElementById('sound14'),
+			document.getElementById('sound15'),
+			document.getElementById('sound16') 
+			]
             function randomSound() {
                 var index = Math.floor(Math.random() * 1000) % mySounds.length;
                 var id = mySounds[index];
